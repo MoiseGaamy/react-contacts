@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Users from './components/Users';
 import './App.css';
 import AddUserForm from "./components/AddUserForm";
+import { connect } from "react-redux";
+import { addContact } from './actions/contactActions';
 
 class App extends Component {
   constructor(props) {
@@ -34,9 +36,7 @@ class App extends Component {
   
   addNewUser = (user) => {
     user.id = Math.floor(Math.random() * 1000) + 1;
-    this.setState({
-      users: [...this.state.users, user]
-    })
+    this.props.addNewContact(user);
   }
   deleteUser = (id) => {
     const userKept = this.state.users.filter((user) => {
@@ -66,4 +66,8 @@ class App extends Component {
   ); }
 }
 
-export default App;
+const mapDispatchToProps = {
+  addNewContact: addContact,
+};
+
+export default connect(null,mapDispatchToProps)(App);

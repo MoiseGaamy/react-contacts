@@ -1,6 +1,7 @@
 import React from 'react'
 import {Container, Row} from "react-bootstrap"
 import User from './User'
+import { connect } from "react-redux";
 
  function Users(props) {
     return (
@@ -8,7 +9,7 @@ import User from './User'
             <Row>
 
                 {
-                    props.usersData.map((user) => {
+                    props.contactsData.map((user) => {
                         return <User userInfo={user} key={user.id} deleteUser={props.onDelete} editUser={props.editUser}/>
                     })
                 }
@@ -17,4 +18,9 @@ import User from './User'
         </Container>
     )
 }
-export default Users;
+const mapStateToProps = (state) => {
+    return {
+        contactsData: state.contacts,
+    };
+};
+export default connect(mapStateToProps)(Users);
