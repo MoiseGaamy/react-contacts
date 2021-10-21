@@ -1,6 +1,9 @@
 import React,{useState} from 'react'
 import { Card, Col, Button, Modal } from "react-bootstrap";
-import EditUserForm  from "./EditUserForm"
+import EditUserForm from "./EditUserForm"
+import { connect } from "react-redux";
+import { deleteContact } from "../actions/contactActions.js";
+
 function User(props) {
     const [show, setShow] = useState(false);
 
@@ -8,7 +11,7 @@ function User(props) {
     const handleShow = () => setShow(true);
 
      function handleDelete() {
-         props.deleteUser(props.userInfo.id);
+         props.deleteContact(props.userInfo.id);
     }
     return (
         <>
@@ -17,7 +20,7 @@ function User(props) {
         <Modal.Title>Edit User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditUserForm userInfo={props.userInfo} editUser={props.editUser} deleteModal={handleClose}/>
+          <EditUserForm userInfo={props.userInfo} deleteModal={handleClose}/>
         </Modal.Body>
       </Modal>
         <Col md="4" style={{marginBottom: "1rem"}}>
@@ -39,4 +42,9 @@ function User(props) {
         </>
     )
 }
-export default User;
+
+const mapDispatchToProps = {
+  deleteContact,
+}
+
+export default connect(null,mapDispatchToProps)(User);
