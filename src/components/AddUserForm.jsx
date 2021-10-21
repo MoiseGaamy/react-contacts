@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {Form, Button} from "react-bootstrap"
+import { connect } from "react-redux";
+import { addContact } from '../actions/contactActions';
 
-export default class AddUserForm extends Component {
+class AddUserForm extends Component {
     constructor(props) {
       super(props);
         this.state = {
@@ -19,7 +21,7 @@ export default class AddUserForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addUser(this.state);
+        this.props.addNewContact(this.state);
         this.setState({
             name: "",
             email: "",
@@ -51,3 +53,7 @@ export default class AddUserForm extends Component {
         )
     }
 }
+const mapDispatchToProps = {
+  addNewContact: addContact,
+};
+export default connect(null,mapDispatchToProps)(AddUserForm);
