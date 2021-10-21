@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
                 {
                     props.contactsData.map((user) => {
-                        return <User userInfo={user} key={user.id} deleteUser={props.onDelete} editUser={props.editUser}/>
+                        return <User userInfo={user} key={user.id} />
                     })
                 }
                 
