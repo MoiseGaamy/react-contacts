@@ -4,8 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Users from './components/Users';
 import './App.css';
 import AddUserForm from "./components/AddUserForm";
-import { connect } from "react-redux";
-import { addContact } from './actions/contactActions';
 
 class App extends Component {
   constructor(props) {
@@ -34,31 +32,15 @@ class App extends Component {
     }
   }
   
-  addNewUser = (user) => {
-    user.id = Math.floor(Math.random() * 1000) + 1;
-    this.props.addNewContact(user);
-  }
-  deleteUser = (id) => {
-    const userKept = this.state.users.filter((user) => {
-      return user.id !== id
-    })
-    this.setState({
-      users: userKept
-    })
-}
-  editUser = (updated) => {
-    this.setState({
-    users:this.state.users.map(user => user.id === updated.id ? updated : user)
-  })
-}
+
   render() {
   return (
       <>
         <Container fluid style={{marginTop: "2rem"}}>
           <Row>
-          <Col md="4"><AddUserForm addUser={this.addNewUser}/></Col>
+          <Col md="4"><AddUserForm /></Col>
             <Col>
-              <Users usersData= {this.state.users} onDelete={this.deleteUser} editUser={this.editUser} />
+              <Users usersData= {this.state.users}  />
             </Col>
           </Row>
         </Container>
@@ -66,8 +48,4 @@ class App extends Component {
   ); }
 }
 
-const mapDispatchToProps = {
-  addNewContact: addContact,
-};
-
-export default connect(null,mapDispatchToProps)(App);
+export default App;
