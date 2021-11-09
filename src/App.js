@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Users from './components/Users';
 import './App.css';
 import AddUserForm from "./components/AddUserForm";
+import { connect } from "react-redux";
+import { getAllContacts } from "./actions/contactActions.js";
 
 class App extends Component {
   constructor(props) {
@@ -32,7 +34,9 @@ class App extends Component {
     }
   }
   
-
+  componentDidMount() {
+    this.props.getAllContacts();
+}
   render() {
   return (
       <>
@@ -47,5 +51,8 @@ class App extends Component {
       </>
   ); }
 }
+const mapDispatchToProps = {
+  getAllContacts,
+}
 
-export default App;
+export default  connect(null,mapDispatchToProps)(App);
