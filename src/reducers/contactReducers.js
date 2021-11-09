@@ -18,6 +18,8 @@ const usersReducers = (state = initialState , action) => {
                 return contact.id === action.payload.id ? action.payload : contact
             })
             return { ...state, contacts: editedContact };
+        case 'ALL_CONTACTS':
+            return { ...state, contacts: action.payload };
         default:
             return state; 
       }
