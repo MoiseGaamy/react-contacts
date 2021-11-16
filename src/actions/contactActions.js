@@ -1,12 +1,12 @@
 export const addContact = (contact) => {
     return (dispatch, state, { getFirestore }) => {
         getFirestore().collection('contacts')
-            .add(contact)
+            .add({ ...contact, timestamp: getFirestore().Timestamp.fromDate(new Date()) })
             .then(() => {
-                dispatch({
-                    type: "ADD_CONTACT",
-                   payload: contact                           
-                });
+                // dispatch({
+                //     type: "ADD_CONTACT",
+                //    payload: contact                           
+                // });
             });
     };
     // return {
@@ -16,10 +16,18 @@ export const addContact = (contact) => {
 };
 
 export const deleteContact = (contactId) => {
-    return {
-        type: "DELETE_CONTACT",
-        payload: contactId
+
+    return (dispatch, state, { getFirestore }) => {
+        getFirestore().collection('contacts').doc(contactId)
+            .delete()
+            .then(() => {
+                //error handlers
+            });
     };
+    // return {
+    //     type: "DELETE_CONTACT",
+    //     payload: contactId
+    // };
 };
 
 export const editContact = (updated) => {
@@ -32,10 +40,11 @@ export const editContact = (updated) => {
 export const getAllContacts = () => {
     return (dispatch, state, { getFirestore }) => {
         getFirestore().collection('contacts')
+            .orderBy('name', 'asc')
             .onSnapshot((query) => {
                 const Contacts = [];
                 query.forEach((doc) => {
-                    Contacts.push(doc.data());
+                    Contacts.push({ ...doc.data(), id:doc.id });
                 });
                 console.log(Contacts);
                 dispatch({ type: "ALL_CONTACTS", payload: Contacts });
