@@ -31,6 +31,8 @@ function User(props) {
                     <Card.Text>
                       <p>Email:{props.userInfo.email}</p>
                       <p>Gen:{props.userInfo.gen}</p>
+                      <p>Date:{new Date(props.userInfo.timestamp.seconds * 1000).toLocaleDateString('us-en')}</p>
+                      <p>Time:{new Date(props.userInfo.timestamp.seconds * 1000).toLocaleTimeString('us-en')}</p>
                     </Card.Text>
                     <Card.Link href="#" onClick={handleShow}>Edit</Card.Link>
                     <Card.Link href="#">
