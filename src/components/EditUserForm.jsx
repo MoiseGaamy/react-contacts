@@ -22,7 +22,7 @@ import { editContact } from "../actions/contactActions.js";
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.editContact(this.state);
+        this.props.editContact(this.state.id, this.state);
         this.setState({
             name: "",
             email: "",
