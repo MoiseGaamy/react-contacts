@@ -30,11 +30,17 @@ export const deleteContact = (contactId) => {
     // };
 };
 
-export const editContact = (updated) => {
-    return {
-        type: "EDIT_CONTACT",
-        payload: updated
+export const editContact = (contactId, updated) => {
+    return (dispatch, state, { getFirestore }) => {
+        getFirestore().collection('contacts')
+            .doc(contactId)
+            .update(updated)
+            .then(() => { });
     };
+    // return {
+    //     type: "EDIT_CONTACT",
+    //     payload: updated
+    // };
 };
 
 export const getAllContacts = () => {
@@ -44,7 +50,7 @@ export const getAllContacts = () => {
             .onSnapshot((query) => {
                 const Contacts = [];
                 query.forEach((doc) => {
-                    Contacts.push({ ...doc.data(), id:doc.id });
+                    Contacts.push({ ...doc.data(), id: doc.id });
                 });
                 console.log(Contacts);
                 dispatch({ type: "ALL_CONTACTS", payload: Contacts });
