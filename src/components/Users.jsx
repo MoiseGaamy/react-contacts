@@ -19,8 +19,9 @@ import { connect } from "react-redux";
     )
 }
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        contactsData: state.contacts,
+        contactsData: state.contactState.contacts,
     };
 };
 export default connect(mapStateToProps)(Users);
