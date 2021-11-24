@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Form, Button} from "react-bootstrap"
 import { connect } from "react-redux";
 import { addContact } from '../actions/contactActions';
+import { logOut } from "../actions/authActions.js";
 
 class AddUserForm extends Component {
     constructor(props) {
@@ -32,7 +33,9 @@ class AddUserForm extends Component {
     }
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
+            <Button onClick={this.props.out} className="btn btn-secondary">logOut</Button>
+            <hr />
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Name</Form.Label>
               <Form.Control type="text" placeholder="Enter name" name="name" value={this.state.name} onChange={this.handleChange}/>
@@ -55,5 +58,6 @@ class AddUserForm extends Component {
 }
 const mapDispatchToProps = {
   addNewContact: addContact,
+  out : logOut
 };
 export default connect(null,mapDispatchToProps)(AddUserForm);
