@@ -1,13 +1,86 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,700&display=swap');
+body, input{
+  font-family: 'Poppins', sans-serif;
+}
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing:border-box;
+}
+.mycontainer{
+  position: relative;
+  width: 100%;
+  margin-top: 4rem;
+  background-color: #fff;
+  background-image: linear-gradient(45deg, #00bfa6 40%,#fff 30%);
+  min-height: 100vh;
+  overflow: hidden;
+}
+.forms-mycontainer{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.sign-in-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.title{
+  font-size: 2.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.myinput-field {
+  max-width: 380px;
+  width: 100%;
+  height: 55px;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  font-weight: lighter;
+  border-radius: 55px;
+  display: grid;
+  padding: 0 0.4rem;
+  position: relative;
+}
+
+.myinput-field input{
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: rgb(97, 92, 92);
+}
+
+.myinput-field input:placeholder-shown {
+  color: #aaa;
+  font-weight: 500;
+}
+
+.bbtn{
+  width: 150px;
+  height: 49px;
+  outline:none;
+  border: none;
+  border-radius: 48px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  transition: all 0.5s;
+  background-color: #00bfa6;
+}
+
+.bbtn:hover{
+  background-color: #00bfa6;
+}
+.google{
+  margin-top: 1rem;
 }
